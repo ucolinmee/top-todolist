@@ -1,3 +1,89 @@
+@font-face {
+    font-family: 'Kanit';
+    src: url('./assets/fonts/Kanit-Regular.ttf'),
+}
+@font-face {
+    font-family: 'Kanit';
+    src: url('./assets/fonts/Kanit-Bold.ttf');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Kanit';
+    src: url('./assets/fonts/Kanit-Light.ttf');
+    font-weight: light;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit';
+}
+
 body {
-    background-color: rebeccapurple;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    height: 100vh;
+}
+
+/*
+    SIDEBAR
+*/
+
+#sidebar {
+    padding: 20px;
+}
+
+#sidebar h1 span {
+    color: #0A88FF;
+}
+
+.view-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.view-item:hover {
+    color: #0A88FF;
+}
+
+.toggle-views img {
+    aspect-ratio: 1 / 1;
+    height: 20px;
+}
+
+.num-tasks {
+    background-color: #F5F7F9;
+    color: #0A88FF;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.toggle-projects {
+    margin-top: 50px;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-project-btn {
+    font-size: 40px;
+    background: none;
+    border: none;
+    color: #0A88FF;
+    cursor: pointer;
+    padding-bottom: 8px;
+    transition: transform .5s ease-in-out;
+}
+
+.add-project-btn:hover {
+    transform: rotate(180deg)
 }
