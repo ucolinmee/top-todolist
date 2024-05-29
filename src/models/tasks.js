@@ -1,4 +1,4 @@
-const Task = (title, description, dueDate, priority) => {
+const createTask = (title, description, dueDate, priority) => {
     return {
         title: title,
         description: description,
@@ -8,4 +8,4 @@ const Task = (title, description, dueDate, priority) => {
     }
 }
 
-export default Task;
+export default createTask;
