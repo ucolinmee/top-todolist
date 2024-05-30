@@ -6,21 +6,21 @@
     <title>Todo</title>
 </head>
 <body>
-    <div id="sidebar">
+    <section id="sidebar">
         <h1><span>ToDo</span> App</h1>
         <div class="toggle-views">
             <div class="view-item">
-                <img src="">
-                <p>My day</p>
+                <img class="icon" src="">
+                <p>Today</p>
                 <div class="num-tasks">7</div>
             </div>
             <div class="view-item">
-                <img src="">
+                <img class="icon" src="">
                 <p>Next 7 days</p>
                 <div class="num-tasks">10</div>
             </div>
             <div class="view-item">
-                <img src="">
+                <img class="icon" src="">
                 <p>All my tasks</p>
                 <div class="num-tasks">14</div>
             </div>
@@ -29,23 +29,68 @@
         <div class="toggle-projects">
             <div class="flex-row">
                 <h2>My Projects</h2>
-                <button class="add-project-btn">+</button>
+                <button class="add-btn add-project-btn">+</button>
             </div>
             <div class="projects">
                 <div class="view-item">
                     <p>Personal</p>
                     <div class="num-tasks">36</div>
                 </div>
-                <div class="view-item">
-                    <p>Gym</p>
-                    <div class="num-tasks">4</div>
-                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="main" style="background-color: red;">
+    <section id="tasks">
+        <div class="flex-row">
+            <div>
+                <h1>Tasks</h1>
+                <p>from <span>all projects</span></p>
+            </div>
+            <button class="add-btn add-task-btn">Add New Task +</button>
+        </div>
 
+        <div class="task-list">
+            <div class="task low">
+                <h3>Bring dog out for walk</h3>
+                <div class="tagged-project">PERSONAL</div>
+                <div class="date">24/07/2024</div>
+                <div class="icons">
+                    <img class="icon edit-task" src="">
+                    <img class="icon delete-task" src="">
+                </div>
+                <input type="checkbox">
+            </div>
+
+            <div class="task med">
+                <h3>Do coding assignment</h3>
+                <div class="tagged-project">HOMEWORK</div>
+                <div class="date">30/05/2024</div>
+                <div class="icons">
+                    <img class="icon edit-task" src="">
+                    <img class="icon delete-task" src="">
+                </div>
+                <input type="checkbox">
+            </div>
+
+            <div class="task high">
+                <h3>Wash dishes</h3>
+                <div class="tagged-project">CHORES</div>
+                <div class="date">30/05/2024</div>
+                <div class="icons">
+                    <img class="icon edit-task" src="">
+                    <img class="icon delete-task" src="">
+                </div>
+                <input type="checkbox">
+            </div>
+        </div>
+    </section>
+
+    <section id="notes">
+        <div class="flex-row">
+            <h1>Notes</h1>
+            <button class="add-btn add-project-btn">+</button>
+        </div>
+    </section>
     </div>
 </body>
 </html>

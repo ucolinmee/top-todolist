@@ -1,7 +1,6 @@
-const createTask = (title, description, dueDate, priority) => {
+const createTask = (title, dueDate, priority) => {
     return {
         title: title,
-        description: description,
         dueDate: dueDate,
         priority: priority,
         completed: false

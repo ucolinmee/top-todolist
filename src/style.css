@@ -1,3 +1,12 @@
+:root {
+    --dark-blue: #0F172A;
+    --light-blue: #0A88FF;
+    --gray: #F5F7F9;
+    --low-priority: #34D399;
+    --med-priority: #F59E0B;
+    --high-priority: #DC2626;
+}
+
 @font-face {
     font-family: 'Kanit';
     src: url('./assets/fonts/Kanit-Regular.ttf'),
@@ -22,44 +31,67 @@
 
 body {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 4fr 1fr;
+    column-gap: 20px;
+    align-items: center;
     height: 100vh;
+    background-color: var(--dark-blue);
+    padding: 0 15px;
 }
+
+body > section {
+    height: 95vh;
+    overflow: auto;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+span {
+    color: var(--light-blue);
+}
+
+/* @media screen and (max-width: 1200px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+} */
 
 /*
     SIDEBAR
 */
 
-#sidebar {
-    padding: 20px;
-}
-
-#sidebar h1 span {
-    color: #0A88FF;
+#sidebar h1 {
+    font-size: 2rem;
 }
 
 .view-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
     cursor: pointer;
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 1.4rem;
 }
 
 .view-item:hover {
-    color: #0A88FF;
+    color: var(--light-blue);
 }
 
-.toggle-views img {
+.icon {
     aspect-ratio: 1 / 1;
     height: 20px;
 }
 
 .num-tasks {
-    background-color: #F5F7F9;
-    color: #0A88FF;
-    font-size: 16px;
+    background-color: var(--gray);
+    color: var(--light-blue);
+    font-size: 1rem;
     padding: 5px;
     border-radius: 10px;
 }
@@ -74,16 +106,101 @@ body {
     align-items: center;
 }
 
+.add-btn {
+    background: none;
+    color: var(--light-blue);
+    cursor: pointer;
+}
+
 .add-project-btn {
     font-size: 40px;
-    background: none;
     border: none;
-    color: #0A88FF;
-    cursor: pointer;
     padding-bottom: 8px;
     transition: transform .5s ease-in-out;
 }
 
 .add-project-btn:hover {
     transform: rotate(180deg)
+}
+
+/*
+    TASKS
+*/
+
+#tasks span {
+    font-style: italic;
+}
+
+.add-task-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--light-blue);
+    font-size: 1rem;
+    height: 2rem;
+    border-radius: 2rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+}
+
+.add-task-btn:hover {
+    border-width: 3px;
+}
+
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+    padding-top: 1rem;
+}
+
+.task {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    position: relative;
+}
+
+.task input[type="checkbox"] {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    accent-color: var(--light-blue);
+    vertical-align: middle;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.tagged-project {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: max-content;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2rem
+}
+
+.date {
+    color: var(--gray);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.icons {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    display: flex;
+    gap: 10px;
+}
+
+.low {
+    background-color: var(--low-priority);
+}
+
+.med {
+    background-color: var(--med-priority);
+}
+
+.high {
+    background-color: var(--high-priority);
 }

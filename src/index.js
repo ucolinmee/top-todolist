@@ -1,4 +1,4 @@
 import './style.css';
-import loadSidebarImages from './renders/sidebar';
+import loadSidebarImages from './display/sidebar';
 
 loadSidebarImages();
