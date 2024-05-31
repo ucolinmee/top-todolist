@@ -31,7 +31,7 @@
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr 1.5fr;
     column-gap: 20px;
     align-items: center;
     height: 100vh;
@@ -176,6 +176,7 @@ span {
     background-color: rgba(255, 255, 255, 0.3);
     width: max-content;
     padding: 0.25rem 0.5rem;
+    margin: 1rem 0 0.5rem 0;
     border-radius: 2rem
 }
 
@@ -187,7 +188,7 @@ span {
 
 .icons {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 1rem;
     right: 1rem;
     display: flex;
     gap: 10px;
@@ -203,4 +204,19 @@ span {
 
 .high {
     background-color: var(--high-priority);
+}
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 1rem;
+}
+
+.note {
+    background-color: var(--dark-blue);
+    padding: 1rem 1.5rem;
+    color: #FFF;
+    border-radius: 10px;
+    position: relative;
 }
