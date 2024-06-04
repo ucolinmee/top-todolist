@@ -26,9 +26,7 @@ export class Task {
     buildTaskHtml() {
         const taskHtml = new Element('div');
 
-        taskHtml.setAttributes({
-            class: `task ${this.priority}`
-        })
+        taskHtml.setAttributes({class: `task ${this.priority}`})
 
         taskHtml
         .addChild(new Element('h3').setTextContent(this.title))

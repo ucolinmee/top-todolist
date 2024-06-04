@@ -6,11 +6,11 @@ export function initialRender() {
         new Task('Do coding assignment', '30/05/2024', 'med'),
         new Task('Apply for full time job', '30/05/2024', 'high')
     ];
-    const personalProject = new Project('Personal');
+    const initialProject = new Project('Personal');
 
-    personalProject.tasks.push(...initialTasks);
+    initialProject.tasks.push(...initialTasks);
 
-    loadTasks(personalProject);
+    renderTasks(initialProject);
 }
 
 export function renderTasks(project) {

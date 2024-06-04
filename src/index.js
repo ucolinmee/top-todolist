@@ -1,8 +1,8 @@
 import './style.css';
-import loadSidebarImages from './ui/sidebar.js';
+import loadSidebar from './ui/sidebar.js';
 import Dialog from './ui/dialog.js';
-import { initialRender } from './ui/initial.js';
+import { initialRender } from './ui/taskUI.js';
 
-loadSidebarImages();
+loadSidebar();
 Dialog();
 initialRender();

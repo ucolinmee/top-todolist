@@ -6,39 +6,7 @@
     <title>Todo</title>
 </head>
 <body>
-    <section id="sidebar">
-        <h1><span>ToDo</span> App</h1>
-        <div class="toggle-views">
-            <div class="view-item">
-                <img class="icon" src="">
-                <p>Today</p>
-                <div class="num-tasks">7</div>
-            </div>
-            <div class="view-item">
-                <img class="icon" src="">
-                <p>Next 7 days</p>
-                <div class="num-tasks">10</div>
-            </div>
-            <div class="view-item">
-                <img class="icon" src="">
-                <p>All my tasks</p>
-                <div class="num-tasks">14</div>
-            </div>
-        </div>
-
-        <div class="toggle-projects">
-            <div class="flex-row">
-                <h2>My Projects</h2>
-                <button class="add-btn add-project-btn">+</button>
-            </div>
-            <div class="projects">
-                <div class="view-item">
-                    <p>Personal</p>
-                    <div class="num-tasks">36</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="sidebar"></section>
 
     <section id="tasks">
         <div class="flex-row">
@@ -77,6 +45,38 @@
             <button id="create-btn">Create</button>
         </div>
     </dialog>
+
+    <dialog id="task-dialog" class="modal">
+        <h1>New Todo</h1>
+        <form>
+            <div>
+                <label for="title">Task Name</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div>
+                <label for="date">Due Date</label>
+                <input type="date" name="date" id="date">
+            </div>
+            <div>
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="med">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div>
+                <label for="project">Add to Project</label>
+                <select name="project" id="project">
+                    <option value="personal">Personal</option>
+                </select>
+            </div>
+            <div>
+                <input type="button" value="Cancel">
+                <input type="button" value="Submit">
+            </div>
+        </form>
+    </dialog>   
 
     </div>
 </body>

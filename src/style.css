@@ -51,10 +51,6 @@ h1 {
     font-size: 1.8rem;
 }
 
-span {
-    color: var(--light-blue);
-}
-
 /* @media screen and (max-width: 1200px) {
     body {
         display: flex;
@@ -68,6 +64,10 @@ span {
 
 #sidebar h1 {
     font-size: 2rem;
+}
+
+.blue {
+    color: var(--light-blue);
 }
 
 .view-item {
@@ -96,7 +96,7 @@ span {
     border-radius: 10px;
 }
 
-.toggle-projects {
+.projects-menu {
     margin-top: 50px;
 }
 
