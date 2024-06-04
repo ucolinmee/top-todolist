@@ -158,6 +158,7 @@ span {
     padding: 0.5rem 1rem;
     border-radius: 10px;
     position: relative;
+    margin-bottom: 1.5rem;
 }
 
 .task input[type="checkbox"] {
@@ -192,6 +193,10 @@ span {
     right: 1rem;
     display: flex;
     gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
 }
 
 .low {
