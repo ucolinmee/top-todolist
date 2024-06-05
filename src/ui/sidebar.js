@@ -2,6 +2,7 @@ import bullseyeImg from '../assets/images/bullseye.svg';
 import calendar7Img from '../assets/images/calendar7.svg';
 import documentsImg from '../assets/images/documents.svg';
 import { Element, Librarian } from '../classes';
+import { openProjectDialog } from './dialog';
 
 const sidebar = document.getElementById('sidebar');
 
@@ -48,7 +49,12 @@ function loadProjectsMenu() {
     ProjectsMenuHtml
     .addChild(new Element('div').setAttributes({class: 'flex-row'})
         .addChild(new Element('h2').setTextContent('My Projects'))
-        .addChild(new Element('button').setTextContent('+').setAttributes({class: 'add-btn add-project-btn'})));
+        .addChild(
+            new Element('button')
+            .setTextContent('+')
+            .setAttributes({class: 'add-btn add-project-btn'})
+            .appendEventListener('click', openProjectDialog)
+        ));
 
     const ProjectsListHtml = new Element('div').setAttributes({class: 'projects'});
 

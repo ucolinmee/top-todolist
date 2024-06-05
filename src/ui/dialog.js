@@ -1,37 +1,35 @@
-import { Project, Librarian } from "../classes";
+import { Project, Librarian, Element } from "../classes";
 import loadSidebar from "./sidebar";
 
-const Dialog = () => {
-    const projectModal = document.getElementById('project-dialog');
-    const dialogText = document.querySelector('.project-dialog-text');
+createProjectDialog();
+const projectModal = document.getElementById('project-dialog');
+const dialogText = document.querySelector('.project-dialog-text');
 
-    const openCreateProjectDialog = () => {
-        projectModal.showModal();
-    }
-
-    const closeCreateProjectDialog = () => {
-        dialogText.value = "";
-        projectModal.close();
-    }
-
-    const submitCreateProjectDialog = () => {
-        Librarian.addProject(new Project(dialogText.value));
-        loadSidebar();
-        closeCreateProjectDialog();
-    }
-
-    const addListeners = () => {
-        const addProjectBtn = document.querySelector('.add-project-btn');
-        addProjectBtn.addEventListener('click', openCreateProjectDialog);
-
-        const cancelBtn = document.getElementById('cancel-btn');
-        cancelBtn.addEventListener('click', closeCreateProjectDialog);
-
-        const createBtn = document.getElementById('create-btn');
-        createBtn.addEventListener('click', submitCreateProjectDialog);
-    }
-
-    addListeners();
+export function openProjectDialog() {
+    projectModal.showModal();
 }
 
-export default Dialog;
+function closeProjectDialog() {
+    dialogText.value = "";
+    projectModal.close();
+}
+
+function submitProjectDialog() {
+    Librarian.addProject(new Project(dialogText.value));
+    loadSidebar();
+    closeProjectDialog();
+}
+
+function createProjectDialog() {
+    const projectDialogHtml = new Element('dialog').setAttributes({id: 'project-dialog', class: 'modal'})
+
+    projectDialogHtml
+    .addChild(new Element('h1').setTextContent('New Project'))
+    .addChild(new Element('input').setAttributes({placeholder: 'Project name', class: 'project-dialog-text'}))
+    .addChild(new Element('div').setAttributes({class: 'dialog-btns'})
+        .addChild(new Element('button').setTextContent('Cancel').setAttributes({id: 'cancel-btn'}).appendEventListener('click', closeProjectDialog))
+        .addChild(new Element('button').setTextContent('Create').setAttributes({id: 'create-btn'}).appendEventListener('click', submitProjectDialog))
+    )
+
+    document.body.appendChild(projectDialogHtml.buildElement());
+}

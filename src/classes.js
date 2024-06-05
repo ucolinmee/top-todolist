@@ -35,10 +35,10 @@ export class Task {
         .addChild(new Element('div').setAttributes({class: 'icons'})
             .addChild(new Element('img')
                 .setAttributes({class: 'icon edit-task', src: editUrl})
-                .appendEventListeners('click', editTaskHandler))
+                .appendEventListener('click', editTaskHandler))
             .addChild(new Element('img')
                 .setAttributes({class: 'icon delete-task', src: trashUrl})
-                .appendEventListeners('click', deleteTaskHandler))
+                .appendEventListener('click', deleteTaskHandler))
         )
         .addChild(new Element('input').setAttributes({type: 'checkbox'}))
 
@@ -171,7 +171,7 @@ export class Element {
         return this;
     }
 
-    appendEventListeners(event, callbackFn) {
+    appendEventListener(event, callbackFn) {
         if (this.eventListeners[event]) {
             this.eventListeners[event].push(callbackFn);
         } else {

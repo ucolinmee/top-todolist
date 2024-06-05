@@ -1,6 +1,6 @@
 import './style.css';
 import loadSidebar from './ui/sidebar.js';
-import Dialog from './ui/dialog.js';
+// import Dialog from './ui/dialog.js';
 import { renderTasks } from './ui/taskUI.js';
 import { Task, Project, Librarian } from './classes.js';
 
@@ -17,7 +17,7 @@ function init() {
     initialProject.tasks.push(...initialTasks);
 
     loadSidebar();
-    Dialog();
+    // Dialog();
     renderTasks(initialProject);
 }
 
