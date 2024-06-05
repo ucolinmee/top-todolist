@@ -1,19 +1,12 @@
-import { Task, Project } from "../classes";
+import { Element } from "../classes";
+import { openTaskDialog } from "./dialog";
 
-export function initialRender() {
-    const initialTasks = [
-        new Task('Bring dog out for walk', '24/07/2024', 'low'),
-        new Task('Do coding assignment', '30/05/2024', 'med'),
-        new Task('Apply for full time job', '30/05/2024', 'high')
-    ];
-    const initialProject = new Project('Personal');
-
-    initialProject.tasks.push(...initialTasks);
-
-    renderTasks(initialProject);
-}
+const tasksSection = document.getElementById('tasks');
 
 export function renderTasks(project) {
+    tasksSection.innerHTML = "";
+    loadHeader(project.name);
+
     const taskDiv = document.querySelector('.task-list');
     taskDiv.innerHTML = "";
 
@@ -21,3 +14,33 @@ export function renderTasks(project) {
         taskDiv.appendChild(task.buildTaskHtml());
     })
 }
+
+function loadHeader(projectTitle) {
+    const taskHeaderHtml = new Element('div').setAttributes({class: 'flex-row'});
+
+    taskHeaderHtml
+    .addChild(new Element('div')
+        .addChild(new Element('h1').setTextContent('Tasks'))
+        .addChild(new Element('p')
+            .addChild(new Element('span').setTextContent('from '))
+            .addChild(new Element('span').setTextContent(projectTitle).setAttributes({class: 'blue'}))
+        )
+    )
+    .addChild(new Element('button')
+    .setTextContent('Add New Task +')
+    .setAttributes({class: 'add-btn add-task-btn'})
+    .appendEventListener('click', openTaskDialog))
+
+    tasksSection.appendChild(taskHeaderHtml.buildElement());
+    tasksSection.appendChild(new Element('div').setAttributes({class: 'task-list'}).buildElement());
+}
+
+{/* <div class="flex-row">
+    <div>
+        <h1>Tasks</h1>
+        <p>from <span class="blue">all projects</span></p>
+    </div>
+    <button class="add-btn add-task-btn">Add New Task +</button>
+</div>
+
+<div class="task-list"></div> */}

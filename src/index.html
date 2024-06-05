@@ -8,17 +8,7 @@
 <body>
     <section id="sidebar"></section>
 
-    <section id="tasks">
-        <div class="flex-row">
-            <div>
-                <h1>Tasks</h1>
-                <p>from <span>all projects</span></p>
-            </div>
-            <button class="add-btn add-task-btn">Add New Task +</button>
-        </div>
-
-        <div class="task-list"></div>
-    </section>
+    <section id="tasks"></section>
 
     <section id="notes">
         <div class="flex-row">
@@ -35,49 +25,6 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- <dialog id="project-dialog" class="modal">
-        <h1>New Project</h1>
-        <input type="text" placeholder="Project name" class="project-dialog-text">
-        <div class="dialog-btns">
-            <button id="cancel-btn">Cancel</button>
-            <button id="create-btn">Create</button>
-        </div>
-    </dialog> -->
-
-    <dialog id="task-dialog" class="modal">
-        <h1>New Todo</h1>
-        <form>
-            <div>
-                <label for="title">Task Name</label>
-                <input type="text" name="title" id="title">
-            </div>
-            <div>
-                <label for="date">Due Date</label>
-                <input type="date" name="date" id="date">
-            </div>
-            <div>
-                <label for="priority">Priority</label>
-                <select name="priority" id="priority">
-                    <option value="low">Low</option>
-                    <option value="med">Medium</option>
-                    <option value="high">High</option>
-                </select>
-            </div>
-            <div>
-                <label for="project">Add to Project</label>
-                <select name="project" id="project">
-                    <option value="personal">Personal</option>
-                </select>
-            </div>
-            <div>
-                <input type="button" value="Cancel">
-                <input type="button" value="Submit">
-            </div>
-        </form>
-    </dialog>   
-
-    </div>
+    </section>  
 </body>
 </html>

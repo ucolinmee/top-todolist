@@ -17,11 +17,11 @@ function loadSidebar() {
 
     sidebar.appendChild(todoHeader.buildElement());
 
-    loadViewMenu();
-    loadProjectsMenu();
+    buildViewMenuHtml();
+    buildProjectsMenuHtml();
 }
 
-function loadViewMenu() {
+function buildViewMenuHtml() {
     const ViewMenuHtml = new Element('div');
 
     ViewMenuHtml.setAttributes({class: 'view-menu'})
@@ -43,7 +43,7 @@ function loadViewMenu() {
     sidebar.appendChild(ViewMenuHtml.buildElement());
 }
 
-function loadProjectsMenu() {
+function buildProjectsMenuHtml() {
     const ProjectsMenuHtml = new Element('div').setAttributes({class: 'projects-menu'});
 
     ProjectsMenuHtml
