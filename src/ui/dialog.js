@@ -3,16 +3,9 @@ import loadSidebar from "./sidebar";
 import { renderTasks } from "./taskUI";
 
 buildProjectDialogHtml();
-buildTaskDialogHtml();
 
 const projectModal = document.getElementById('project-dialog');
 const projectText = document.querySelector('.project-dialog-text');
-
-const taskModal = document.getElementById('task-dialog');
-const taskName = document.getElementById('form-title');
-const taskDate = document.getElementById('form-date');
-const taskPriority = document.getElementById('form-priority');
-const taskAssignedProject = document.getElementById('form-project');
 
 export function openProjectDialog() {
     projectModal.showModal();
@@ -24,8 +17,11 @@ function closeProjectDialog() {
 }
 
 function submitProjectDialog() {
-    Librarian.addProject(new Project(projectText.value));
+    const newProj = new Project(projectText.value);
+    Librarian.addProject(newProj);
+
     loadSidebar();
+    renderTasks(newProj)
     closeProjectDialog();
 }
 
@@ -44,19 +40,38 @@ function buildProjectDialogHtml() {
 }
 
 export function openTaskDialog() {
+    buildTaskDialogHtml();
+
+    const taskModal = document.getElementById('task-dialog');
     taskModal.showModal();
 }
 
 function closeTaskDialog() {
+    resetForm();
+
+    const taskModal = document.getElementById('task-dialog');
+    taskModal.close();
+    taskModal.remove();
+}
+
+function resetForm() {
+    const taskName = document.getElementById('form-title');
+    const taskDate = document.getElementById('form-date');
+    const taskPriority = document.getElementById('form-priority');
+    const taskAssignedProject = document.getElementById('form-project');
+
     taskName.value = "";
     taskDate.value = "";
     taskPriority.selectedIndex = 0;
     taskAssignedProject.selectedIndex = 0;
-    taskModal.close();
 }
 
 function submitTaskDialog() {
     // Create new task with form values
+    const taskName = document.getElementById('form-title');
+    const taskDate = document.getElementById('form-date');
+    const taskPriority = document.getElementById('form-priority');
+    const taskAssignedProject = document.getElementById('form-project');
     const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
 
     // Find the selected project and put new task in that project's array
@@ -92,9 +107,7 @@ function buildTaskDialogHtml() {
         )
         .addChild(new Element('div')
             .addChild(new Element('label').setTextContent('Add to Project').setAttributes({for: 'form-project'}))
-            .addChild(new Element('select').setAttributes({name: 'form-project', id: 'form-project'})
-                .addChild(new Element('option').setTextContent('Personal').setAttributes({value: 'personal'}))
-            )
+            .addChild(buildProjectSelectHtml())
         )
         .addChild(new Element('div')
             .addChild(new Element('input').setAttributes({type: 'button', value: 'Cancel'}).appendEventListener('click', closeTaskDialog))
@@ -104,6 +117,16 @@ function buildTaskDialogHtml() {
 
     document.body.appendChild(taskDialogHtml.buildElement());
 
+}
+
+function buildProjectSelectHtml() {
+    const selectHtml = new Element('select').setAttributes({name: 'form-project', id: 'form-project'});
+
+    Librarian.getAllProjects().forEach((project) => {
+        selectHtml.addChild(new Element('option').setTextContent(project.name).setAttributes({value: project.name.toLowerCase()}))
+    })
+
+    return selectHtml;
 }
 
 {/* <dialog id="project-dialog" class="modal">

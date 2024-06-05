@@ -23,14 +23,14 @@ export class Task {
         this.priority = priority;
     }
 
-    buildTaskHtml() {
+    buildTaskHtml(projectName) {
         const taskHtml = new Element('div');
 
         taskHtml.setAttributes({class: `task ${this.priority}`})
 
         taskHtml
         .addChild(new Element('h3').setTextContent(this.title))
-        .addChild(new Element('div').setTextContent('PERSONAL').setAttributes({class: 'tagged-project'}))
+        .addChild(new Element('div').setTextContent(projectName).setAttributes({class: 'tagged-project'}))
         .addChild(new Element('div').setTextContent(this.date).setAttributes({class: 'date'}))
         .addChild(new Element('div').setAttributes({class: 'icons'})
             .addChild(new Element('img')
