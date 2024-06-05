@@ -1,3 +1,6 @@
+import { Project, Librarian } from "../classes";
+import loadSidebar from "./sidebar";
+
 const Dialog = () => {
     const projectModal = document.getElementById('project-dialog');
     const dialogText = document.querySelector('.project-dialog-text');
@@ -12,7 +15,8 @@ const Dialog = () => {
     }
 
     const submitCreateProjectDialog = () => {
-        console.log(dialogText.value);
+        Librarian.addProject(new Project(dialogText.value));
+        loadSidebar();
         closeCreateProjectDialog();
     }
 

@@ -89,7 +89,32 @@ export class Note {
 
 export class Librarian {
     static projects = [];
+
+    static getAllProjects() {
+        return Librarian.projects;
+    };
+
+    static addProject(project) {
+        Librarian.projects.push(project);
+    }
+
+    static deleteProject(project) {
+        Librarian.projects.splice(Librarian.projects.indexOf(project), 1);
+    }
+
     static notes = [];
+
+    static getAllNotes() {
+        return Librarian.notes;
+    }
+
+    static addNote(note) {
+        Librarian.notes.push(note);
+    }
+
+    static deleteNote(note) {
+        Librarian.notes.splice(Librarian.notes.indexOf(note), 1);
+    }
 };
 
 export class Element {
