@@ -7,6 +7,8 @@ buildProjectDialogHtml();
 const projectModal = document.getElementById('project-dialog');
 const projectText = document.querySelector('.project-dialog-text');
 
+// DIALOG 1 - CREATE NEW PROJECT DIALOG
+
 export function openProjectDialog() {
     projectModal.showModal();
 }
@@ -39,6 +41,8 @@ function buildProjectDialogHtml() {
     document.body.appendChild(projectDialogHtml.buildElement());
 }
 
+// DIALOG 2 - CREATE NEW TASK DIALOG
+
 export function openTaskDialog() {
     buildTaskDialogHtml();
 
@@ -66,16 +70,16 @@ function resetForm() {
     taskAssignedProject.selectedIndex = 0;
 }
 
-function submitTaskDialog() {
+function submitTaskDialog(edit=false) {
     // Create new task with form values
     const taskName = document.getElementById('form-title');
     const taskDate = document.getElementById('form-date');
     const taskPriority = document.getElementById('form-priority');
     const taskAssignedProject = document.getElementById('form-project');
-    const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
 
-    // Find the selected project and put new task in that project's array
+    // Find selected project and add new Task to that project
     const currProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.value.toLowerCase());
+    const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
     currProj.addTask(newTask);
 
     renderTasks(currProj);
@@ -129,7 +133,8 @@ function buildProjectSelectHtml() {
     return selectHtml;
 }
 
-{/* <dialog id="project-dialog" class="modal">
+{/* 
+<dialog id="project-dialog" class="modal">
     <h1>New Project</h1>
     <input type="text" placeholder="Project name" class="project-dialog-text">
     <div class="dialog-btns">
@@ -168,4 +173,5 @@ function buildProjectSelectHtml() {
             <input type="button" value="Submit">
         </div>
     </form>
-</dialog>  */}
+</dialog>  
+*/}

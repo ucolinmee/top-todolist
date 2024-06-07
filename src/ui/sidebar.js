@@ -3,6 +3,7 @@ import calendar7Img from '../assets/images/calendar7.svg';
 import documentsImg from '../assets/images/documents.svg';
 import { Element, Librarian } from '../classes';
 import { openProjectDialog } from './dialog';
+import { renderTasks } from './taskUI';
 
 const sidebar = document.getElementById('sidebar');
 
@@ -74,7 +75,11 @@ function loadProject(project) {
 
     projectHtml
     .addChild(new Element('p').setTextContent(project.name))
-    .addChild(new Element('div').setTextContent(project.tasks.length).setAttributes({class: 'num-tasks'}))
+    .addChild(new Element('div').setTextContent(project.tasks.length).setAttributes({class: 'num-tasks'}));
+
+    projectHtml.appendEventListener('click', () => {
+        renderTasks(project);
+    })
 
     return projectHtml;
 }

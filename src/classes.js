@@ -1,5 +1,5 @@
 import { format, compareAsc } from "date-fns";
-import { editTaskHandler, deleteTaskHandler } from "./helpers/handlers";
+import { deleteTaskHandler, editTaskHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
 import trashUrl from './assets/images/trash.svg';
@@ -23,14 +23,14 @@ export class Task {
         this.priority = priority;
     }
 
-    buildTaskHtml(projectName) {
+    buildTaskHtml(project) {
         const taskHtml = new Element('div');
 
-        taskHtml.setAttributes({class: `task ${this.priority}`})
+        taskHtml.setAttributes({class: `task ${this.priority}`, id: this.id})
 
         taskHtml
         .addChild(new Element('h3').setTextContent(this.title))
-        .addChild(new Element('div').setTextContent(projectName).setAttributes({class: 'tagged-project'}))
+        .addChild(new Element('div').setTextContent(project.name).setAttributes({class: 'tagged-project'}))
         .addChild(new Element('div').setTextContent(this.date).setAttributes({class: 'date'}))
         .addChild(new Element('div').setAttributes({class: 'icons'})
             .addChild(new Element('img')

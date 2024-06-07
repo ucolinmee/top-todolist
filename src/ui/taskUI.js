@@ -11,7 +11,7 @@ export function renderTasks(project) {
     taskDiv.innerHTML = "";
 
     project.tasks.forEach((task) => {
-        taskDiv.appendChild(task.buildTaskHtml(project.name));
+        taskDiv.appendChild(task.buildTaskHtml(project));
     })
 }
 

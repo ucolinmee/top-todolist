@@ -19,4 +19,22 @@ function init() {
     renderTasks(initialProject);
 }
 
+export function deleteTaskHandler(e) {
+    const taskId = e.target.parentNode.parentNode.id;
+    const projectsArray = Librarian.getAllProjects();
+    projectsArray.forEach((project) => {
+        project.tasks.forEach((task) => {
+            if (task.id == taskId) {
+                project.deleteTask(task);
+                renderTasks(project);
+                return;
+            }
+        })
+    })
+}
+
+export function editTaskHandler(e) {
+    const taskId = e.target.parentNode.parentNode.id;
+}
+
 init();
