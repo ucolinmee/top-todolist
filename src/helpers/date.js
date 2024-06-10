@@ -1,4 +1,4 @@
-const formatDate = () => {
+export function today() {
     var currentDate = new Date();
         const options = {
             weekday: 'short',
@@ -11,4 +11,6 @@ const formatDate = () => {
     return currentDate.toLocaleString(undefined, options);
 }
 
-export default formatDate;
+// export function convertToFormDateFormat(date) {
+//     console.log(date.toISOString());
+// }
