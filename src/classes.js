@@ -3,12 +3,13 @@ import { deleteTaskHandler, editTaskHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
 import trashUrl from './assets/images/trash.svg';
+import { convertDateToStringFormat } from "./helpers/date";
 
 export class Task {
     constructor (title, dueDate, priority, completed=false) {
         this.id = uniqid();
         this.title = title;
-        this.date = dueDate;
+        this.date = convertDateToStringFormat(new Date(dueDate));
         this.priority = priority;
         this.completed = completed;
     }
@@ -19,7 +20,7 @@ export class Task {
 
     updateTask(title, dueDate, priority) {
         this.title = title;
-        this.date = dueDate;
+        this.date = convertDateToStringFormat(new Date(dueDate));
         this.priority = priority;
     }
 

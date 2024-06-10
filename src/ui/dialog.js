@@ -1,6 +1,7 @@
 import { Project, Task, Librarian, Element } from "../classes";
 import loadSidebar from "./sidebar";
 import { renderTasks } from "./taskUI";
+import { convertStringToDateFormat } from "../helpers/date";
 
 buildProjectDialogHtml();
 
@@ -54,7 +55,7 @@ export function openPreFilledTaskDialog(task) {
     buildTaskDialogHtml(task);
 
     document.getElementById('form-title').value = task.title;
-    document.getElementById('form-date').value = task.date;
+    document.getElementById('form-date').value = convertStringToDateFormat(task.date);
     document.getElementById('form-priority').value = task.priority;
 
     const assignedProject = document.querySelector('.tagged-project').innerHTML;
@@ -87,18 +88,18 @@ function resetForm() {
 
 function submitTaskDialog(task) {
     // Create new task with form values
-    const taskName = document.getElementById('form-title');
-    const taskDate = document.getElementById('form-date');
-    const taskPriority = document.getElementById('form-priority');
-    const taskAssignedProject = document.getElementById('form-project');
+    const taskName = document.getElementById('form-title').value;
+    const taskDate = document.getElementById('form-date').value;
+    const taskPriority = document.getElementById('form-priority').value;
+    const taskAssignedProject = document.getElementById('form-project').value;
 
     // Find selected project and add new Task to that project
-    const currProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.value.toLowerCase());
+    const currProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.toLowerCase());
     if (task !== null) {
         const targetTask = currProj.findTask(task.id);
-        targetTask.updateTask(taskName.value, taskDate.value, taskPriority.value);
+        targetTask.updateTask(taskName, taskDate, taskPriority);
     } else {
-        const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
+        const newTask = new Task(taskName, taskDate, taskPriority);
         currProj.addTask(newTask);
     }
 
