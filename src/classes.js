@@ -74,6 +74,10 @@ export class Project {
         }
     }
 
+    findTask(id) {
+        return this.tasks.find((task) => task.id == id);
+    }
+
     filterTasksByDate(date) {
         
     }

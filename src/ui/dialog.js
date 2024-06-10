@@ -50,6 +50,21 @@ export function openTaskDialog() {
     taskModal.showModal();
 }
 
+export function openPreFilledTaskDialog(task) {
+    buildTaskDialogHtml(task);
+
+    document.getElementById('form-title').value = task.title;
+    document.getElementById('form-date').value = task.date;
+    document.getElementById('form-priority').value = task.priority;
+
+    const assignedProject = document.querySelector('.tagged-project').innerHTML;
+    const projectIndex = Librarian.projects.findIndex((project) => { return project.name.toLowerCase() == assignedProject.toLowerCase()});
+    document.getElementById('form-project').selectedIndex = projectIndex;
+
+    const taskModal = document.getElementById('task-dialog');
+    taskModal.showModal();
+}
+
 function closeTaskDialog() {
     resetForm();
 
@@ -70,7 +85,7 @@ function resetForm() {
     taskAssignedProject.selectedIndex = 0;
 }
 
-function submitTaskDialog(edit=false) {
+function submitTaskDialog(task) {
     // Create new task with form values
     const taskName = document.getElementById('form-title');
     const taskDate = document.getElementById('form-date');
@@ -79,15 +94,20 @@ function submitTaskDialog(edit=false) {
 
     // Find selected project and add new Task to that project
     const currProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.value.toLowerCase());
-    const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
-    currProj.addTask(newTask);
+    if (task !== null) {
+        const targetTask = currProj.findTask(task.id);
+        targetTask.updateTask(taskName.value, taskDate.value, taskPriority.value);
+    } else {
+        const newTask = new Task(taskName.value, taskDate.value, taskPriority.value);
+        currProj.addTask(newTask);
+    }
 
     renderTasks(currProj);
     loadSidebar();
     closeTaskDialog();
 }
 
-function buildTaskDialogHtml() {
+function buildTaskDialogHtml(task=null) {
     const taskDialogHtml = new Element('dialog').setAttributes({id: 'task-dialog', class: 'modal'});
 
     taskDialogHtml
@@ -115,7 +135,7 @@ function buildTaskDialogHtml() {
         )
         .addChild(new Element('div')
             .addChild(new Element('input').setAttributes({type: 'button', value: 'Cancel'}).appendEventListener('click', closeTaskDialog))
-            .addChild(new Element('input').setAttributes({type: 'button', value: 'Submit'}).appendEventListener('click', submitTaskDialog))
+            .addChild(new Element('input').setAttributes({type: 'button', value: 'Submit'}).appendEventListener('click', () => {submitTaskDialog(task=task)}))
         )
     );
 
