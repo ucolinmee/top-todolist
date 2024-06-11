@@ -93,17 +93,27 @@ function submitTaskDialog(task) {
     const taskPriority = document.getElementById('form-priority').value;
     const taskAssignedProject = document.getElementById('form-project').value;
 
-    // Find selected project and add new Task to that project
-    const currProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.toLowerCase());
+    // Get selected project
+    const chosenProj = Librarian.projects.find((project) => project.name.toLowerCase() === taskAssignedProject.toLowerCase());
     if (task !== null) {
-        const targetTask = currProj.findTask(task.id);
-        targetTask.updateTask(taskName, taskDate, taskPriority);
+        // Update existing task
+        const oldProj = Librarian.projects.find((project) => project.findTask(task.id) !== undefined);
+
+        const targetTask = oldProj.findTask(task.id);
+        targetTask.updateTask(taskName, taskDate, taskPriority); 
+
+        if (oldProj !== chosenProj) {
+            // Task reassigned to diff project
+            oldProj.deleteTask(task);
+            chosenProj.addTask(targetTask);
+        }
     } else {
+        // Create new task
         const newTask = new Task(taskName, taskDate, taskPriority);
-        currProj.addTask(newTask);
+        chosenProj.addTask(newTask);
     }
 
-    renderTasks(currProj);
+    renderTasks(chosenProj);
     loadSidebar();
     closeTaskDialog();
 }
