@@ -3,13 +3,16 @@ import loadSidebar from './ui/sidebar.js';
 import { renderTasks } from './ui/taskUI.js';
 import { Task, Project, Librarian } from './classes.js';
 import { openPreFilledTaskDialog } from './ui/dialog.js';
-import { today, nextWeek, convertStringToDateFormat } from './helpers/date.js';
+import { startOfToday, endOfToday, addDays } from 'date-fns';
 
 function init() {
     const initialTasks = [
-        new Task('Bring dog out for walk', today(), 'low'),
-        new Task('Do coding assignment', today(), 'med'),
-        new Task('Apply for full time job', nextWeek(), 'high')
+        new Task('Bring dog out for walk', startOfToday(), 'low'),
+        new Task('Do coding assignment', startOfToday(), 'med'),
+        new Task('Apply for full time job', addDays(startOfToday(), 7), 'high'),
+        new Task('Buy coffin', addDays(startOfToday(), 20000), 'low'),
+        new Task('Haircut', startOfToday(), 'low'),
+        new Task('Pack bags for trip', startOfToday(), 'high')
     ];
     const initialProject = new Project('Personal');
     Librarian.addProject(initialProject);
@@ -45,4 +48,17 @@ export function editTaskHandler(e) {
     })
 }
 
+export function filterTodayHandler() {
+
+}
+
+export function filterNextWeekHandler() {
+
+}
+
+export function filterAllHandler() {
+
+}
+
 init();
+console.log(Librarian.projects[0].filterTasks({start: startOfToday(), end: endOfToday()}));

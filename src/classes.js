@@ -1,9 +1,9 @@
-import { format, compareAsc } from "date-fns";
+import { isWithinInterval } from "date-fns";
 import { deleteTaskHandler, editTaskHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
 import trashUrl from './assets/images/trash.svg';
-import { convertDateToStringFormat } from "./helpers/date";
+import { convertDateToStringFormat, convertStringToDate } from "./helpers/date";
 
 export class Task {
     constructor (title, dueDate, priority, completed=false) {
@@ -79,8 +79,8 @@ export class Project {
         return this.tasks.find((task) => task.id == id);
     }
 
-    filterTasksByDate(date) {
-        
+    filterTasks(interval) {
+        return this.tasks.filter((task) => isWithinInterval(new Date(task.date), interval))
     }
 }
 

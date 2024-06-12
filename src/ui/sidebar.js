@@ -4,6 +4,7 @@ import documentsImg from '../assets/images/documents.svg';
 import { Element, Librarian } from '../classes';
 import { openProjectDialog } from './dialog';
 import { renderTasks } from './taskUI';
+import { filterTodayHandler, filterNextWeekHandler, filterAllHandler } from '..';
 
 const sidebar = document.getElementById('sidebar');
 
@@ -28,7 +29,7 @@ function buildViewMenuHtml() {
     ViewMenuHtml.setAttributes({class: 'view-menu'})
 
     ViewMenuHtml
-    .addChild(new Element('div').setAttributes({class: 'view-item'})
+    .addChild(new Element('div').setAttributes({class: 'view-item'}).appendEventListener('click', filterTodayHandler)
         .addChild(new Element('img').setAttributes({class: 'icon', src: bullseyeImg}))
         .addChild(new Element('p').setTextContent('Today'))
         .addChild(new Element('div').setTextContent('7').setAttributes({class: 'num-tasks'})))

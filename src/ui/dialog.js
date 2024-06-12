@@ -1,7 +1,7 @@
 import { Project, Task, Librarian, Element } from "../classes";
 import loadSidebar from "./sidebar";
 import { renderTasks } from "./taskUI";
-import { convertStringToDateFormat } from "../helpers/date";
+import { convertStringToFormDateFormat } from "../helpers/date";
 
 buildProjectDialogHtml();
 
@@ -55,7 +55,7 @@ export function openPreFilledTaskDialog(task) {
     buildTaskDialogHtml(task);
 
     document.getElementById('form-title').value = task.title;
-    document.getElementById('form-date').value = convertStringToDateFormat(task.date);
+    document.getElementById('form-date').value = convertStringToFormDateFormat(task.date);
     document.getElementById('form-priority').value = task.priority;
 
     const assignedProject = document.querySelector('.tagged-project').innerHTML;

@@ -8,7 +8,7 @@ export function convertDateToStringFormat(date) {
     return date.toLocaleString(undefined, options);
 }
 
-export function convertStringToDateFormat(str) {
+export function convertStringToFormDateFormat(str) {
     const date = new Date(str);
 
     const year = date.getFullYear();
@@ -20,6 +20,10 @@ export function convertStringToDateFormat(str) {
     day = day.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
 
     return `${year}-${month}-${day}`;
+}
+
+export function convertStringToDate(str) {
+    return new Date(str);
 }
 
 export function today() {
