@@ -6,11 +6,12 @@ import trashUrl from './assets/images/trash.svg';
 import { convertDateToStringFormat, convertStringToDate } from "./helpers/date";
 
 export class Task {
-    constructor (title, dueDate, priority, completed=false) {
+    constructor (title, dueDate, priority, project, completed=false) {
         this.id = uniqid();
         this.title = title;
         this.date = convertDateToStringFormat(new Date(dueDate));
         this.priority = priority;
+        this.project = project;
         this.completed = completed;
     }
 
@@ -18,20 +19,21 @@ export class Task {
         this.completed = !this.completed;
     }
 
-    updateTask(title, dueDate, priority) {
+    updateTask(title, dueDate, priority, project) {
         this.title = title;
         this.date = convertDateToStringFormat(new Date(dueDate));
         this.priority = priority;
+        this.project = project;
     }
 
-    buildTaskHtml(project) {
+    buildTaskHtml() {
         const taskHtml = new Element('div');
 
         taskHtml.setAttributes({class: `task ${this.priority}`, id: this.id})
 
         taskHtml
         .addChild(new Element('h3').setTextContent(this.title))
-        .addChild(new Element('div').setTextContent(project.name).setAttributes({class: 'tagged-project'}))
+        .addChild(new Element('div').setTextContent(this.project).setAttributes({class: 'tagged-project'}))
         .addChild(new Element('div').setTextContent(this.date).setAttributes({class: 'date'}))
         .addChild(new Element('div').setAttributes({class: 'icons'})
             .addChild(new Element('img')

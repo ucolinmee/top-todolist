@@ -3,15 +3,15 @@ import { openTaskDialog } from "./dialog";
 
 const tasksSection = document.getElementById('tasks');
 
-export function renderTasks(project) {
+export function renderTasks(taskArray, title) {
     tasksSection.innerHTML = "";
-    loadHeader(project.name);
+    loadHeader(title);
 
     const taskDiv = document.querySelector('.task-list');
     taskDiv.innerHTML = "";
 
-    project.tasks.forEach((task) => {
-        taskDiv.appendChild(task.buildTaskHtml(project));
+    taskArray.forEach((task) => {
+        taskDiv.appendChild(task.buildTaskHtml());
     })
 }
 

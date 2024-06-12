@@ -24,7 +24,7 @@ function submitProjectDialog() {
     Librarian.addProject(newProj);
 
     loadSidebar();
-    renderTasks(newProj)
+    renderTasks(newProj.tasks, newProj.name);
     closeProjectDialog();
 }
 
@@ -100,7 +100,7 @@ function submitTaskDialog(task) {
         const oldProj = Librarian.projects.find((project) => project.findTask(task.id) !== undefined);
 
         const targetTask = oldProj.findTask(task.id);
-        targetTask.updateTask(taskName, taskDate, taskPriority); 
+        targetTask.updateTask(taskName, taskDate, taskPriority, chosenProj.name); 
 
         if (oldProj !== chosenProj) {
             // Task reassigned to diff project
@@ -109,11 +109,11 @@ function submitTaskDialog(task) {
         }
     } else {
         // Create new task
-        const newTask = new Task(taskName, taskDate, taskPriority);
+        const newTask = new Task(taskName, taskDate, taskPriority, chosenProj.name);
         chosenProj.addTask(newTask);
     }
 
-    renderTasks(chosenProj);
+    renderTasks(chosenProj.tasks, chosenProj.name);
     loadSidebar();
     closeTaskDialog();
 }
