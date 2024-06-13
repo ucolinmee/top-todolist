@@ -1,5 +1,5 @@
 import { isWithinInterval, compareAsc } from "date-fns";
-import { deleteTaskHandler, editTaskHandler } from ".";
+import { deleteTaskHandler, editTaskHandler, deleteNoteHandler, editNoteHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
 import trashUrl from './assets/images/trash.svg';
@@ -133,6 +133,7 @@ export class Note {
     constructor (content) {
         this.id = uniqid();
         this.content = content;
+        this.date = convertDateToStringFormat(new Date());
     }
 
     buildNoteHtml() {
@@ -140,12 +141,14 @@ export class Note {
 
         noteHtml
         .addChild(new Element('div').setAttributes({class: 'note-text'}).setTextContent(this.content))
-        .addChild(new Element('div').setAttributes({class: 'date'}).setTextContent(convertDateToStringFormat(new Date())))
+        .addChild(new Element('div').setAttributes({class: 'date'}).setTextContent(this.date))
         .addChild(new Element('div').setAttributes({class: 'icons'})
             .addChild(new Element('img')
-                .setAttributes({class: 'icon edit-task white', src: editUrl}))
+                .setAttributes({class: 'icon edit-task white', src: editUrl})
+                .appendEventListener('click', editNoteHandler))
             .addChild(new Element('img')
-                .setAttributes({class: 'icon delete-task white', src: trashUrl}))
+                .setAttributes({class: 'icon delete-task white', src: trashUrl})
+                .appendEventListener('click', deleteNoteHandler))
         )
 
         return noteHtml.buildElement();
@@ -190,6 +193,10 @@ export class Librarian {
 
     static deleteNote(note) {
         Librarian.notes.splice(Librarian.notes.indexOf(note), 1);
+    }
+
+    static findNote(id) {
+        return Librarian.notes.find((note) => note.id === id);
     }
 };
 

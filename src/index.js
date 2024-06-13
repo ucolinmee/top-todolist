@@ -5,6 +5,7 @@ import { renderNotes } from './ui/notesUI.js';
 import { Task, Project, Librarian, Note } from './classes.js';
 import { openPreFilledTaskDialog } from './ui/dialogs/taskDialog.js';
 import { startOfToday, endOfToday, addDays } from 'date-fns';
+import { openFilledNoteDialog } from './ui/dialogs/noteDialog.js';
 
 function init() {
     const initialTasks = [
@@ -60,6 +61,18 @@ export function editTaskHandler(e) {
         return true; // continue
     })
 }
+
+export function deleteNoteHandler(e) {
+    const noteId = e.target.parentNode.parentNode.id;
+    Librarian.deleteNote(Librarian.findNote(noteId));
+    renderNotes();
+}
+
+export function editNoteHandler(e) {
+    const noteId = e.target.parentNode.parentNode.id;
+    const noteToEdit = Librarian.findNote(noteId);
+    openFilledNoteDialog(noteToEdit);
+}                                                                                       
 
 export function filterHandler(type) {
     const tempProject = new Project('Temp');

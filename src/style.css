@@ -229,6 +229,7 @@ h1 {
 .note {
     background-color: var(--dark-blue);
     padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
     color: #FFF;
     border-radius: 10px;
     position: relative;
