@@ -7,12 +7,12 @@ import { startOfToday, endOfToday, addDays, addYears } from 'date-fns';
 
 function init() {
     const initialTasks = [
-        new Task('Bring dog out for walk', startOfToday(), 'low', 'Personal'),
-        new Task('Do coding assignment', startOfToday(), 'med', 'Personal'),
-        new Task('Apply for full time job', addDays(startOfToday(), 7), 'high', 'Personal'),
-        new Task('Buy coffin', addDays(startOfToday(), 20000), 'low', 'Personal'),
-        new Task('Haircut', startOfToday(), 'low', 'Personal'),
-        new Task('Pack bags for trip', startOfToday(), 'high', 'Personal')
+        new Task('Bring dog out for walk', startOfToday(), 0, 'Personal'),
+        new Task('Do coding assignment', startOfToday(), 1, 'Personal'),
+        new Task('Apply for full time job', addDays(startOfToday(), 7), 2, 'Personal'),
+        new Task('Buy coffin', addDays(startOfToday(), 20000), 0, 'Personal'),
+        new Task('Haircut', startOfToday(), 0, 'Personal'),
+        new Task('Pack bags for trip', startOfToday(), 2, 'Personal')
     ];
     const initialProject = new Project('Personal');
     Librarian.addProject(initialProject);
@@ -20,6 +20,8 @@ function init() {
     initialProject.tasks.push(...initialTasks);
 
     loadSidebar();
+
+    initialProject.sortTasks();
     renderTasks(initialProject.tasks, initialProject.name);
 }
 
@@ -52,12 +54,13 @@ export function editTaskHandler(e) {
 }
 
 export function filterHandler(type) {
-    const tasksArray = [];
+    const tempProject = new Project('Temp');
     let interval = {};
 
     if (type === 'All') {
-        Librarian.projects.forEach((project) => tasksArray.push(...project.tasks));
-        renderTasks(tasksArray, 'All');
+        Librarian.projects.forEach((project) => tempProject.tasks.push(...project.tasks));
+        tempProject.sortTasks();
+        renderTasks(tempProject.tasks, 'All');
         return;
     } 
     else {
@@ -75,10 +78,11 @@ export function filterHandler(type) {
         } 
 
         Librarian.projects.forEach((project) => {
-            tasksArray.push(...project.filterTasks(interval))
+            tempProject.tasks.push(...project.filterTasks(interval))
         });
-    
-        renderTasks(tasksArray, type);
+        
+        tempProject.sortTasks();
+        renderTasks(tempProject.tasks, type);
     } 
 }
 

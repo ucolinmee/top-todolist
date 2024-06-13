@@ -110,9 +110,11 @@ function submitTaskDialog(task) {
     } else {
         // Create new task
         const newTask = new Task(taskName, taskDate, taskPriority, chosenProj.name);
+        console.log(newTask);
         chosenProj.addTask(newTask);
     }
 
+    chosenProj.sortTasks();
     renderTasks(chosenProj.tasks, chosenProj.name);
     loadSidebar();
     closeTaskDialog();
@@ -135,9 +137,9 @@ function buildTaskDialogHtml(task=null) {
         .addChild(new Element('div')
             .addChild(new Element('label').setTextContent('Priority').setAttributes({for: 'form-priority'}))
             .addChild(new Element('select').setAttributes({name: 'form-priority', id: 'form-priority'})
-                .addChild(new Element('option').setTextContent('Low').setAttributes({value: 'low'}))
-                .addChild(new Element('option').setTextContent('Medium').setAttributes({value: 'med'}))
-                .addChild(new Element('option').setTextContent('High').setAttributes({value: 'high'}))
+                .addChild(new Element('option').setTextContent('Low').setAttributes({value: 0}))
+                .addChild(new Element('option').setTextContent('Medium').setAttributes({value: 1}))
+                .addChild(new Element('option').setTextContent('High').setAttributes({value: 2}))
             )
         )
         .addChild(new Element('div')

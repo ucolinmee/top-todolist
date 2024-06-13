@@ -1,4 +1,4 @@
-import { isWithinInterval } from "date-fns";
+import { isWithinInterval, compareAsc } from "date-fns";
 import { deleteTaskHandler, editTaskHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
@@ -15,6 +15,18 @@ export class Task {
         this.completed = completed;
     }
 
+    priorityText() {
+        if (this.priority == 0) {
+            return 'low';
+        }
+        else if (this.priority == 1) {
+            return 'med';
+        }
+        else {
+            return 'high';
+        }
+    }
+
     toggleComplete() {
         this.completed = !this.completed;
     }
@@ -29,7 +41,7 @@ export class Task {
     buildTaskHtml() {
         const taskHtml = new Element('div');
 
-        taskHtml.setAttributes({class: `task ${this.priority}`, id: this.id})
+        taskHtml.setAttributes({class: `task ${this.priorityText()}`, id: this.id})
 
         taskHtml
         .addChild(new Element('h3').setTextContent(this.title))
@@ -83,6 +95,16 @@ export class Project {
 
     filterTasks(interval) {
         return this.tasks.filter((task) => isWithinInterval(new Date(task.date), interval))
+    }
+
+    // Method sorts tasks by priority, then by date
+    sortTasks() {
+        this.tasks.sort((taskA, taskB) => {
+            if (Number(taskA.priority) < Number(taskB.priority)) return 1; 
+            if (Number(taskA.priority) > Number(taskB.priority)) return -1; 
+
+            return compareAsc(taskA.date, taskB.date);
+        })
     }
 }
 
