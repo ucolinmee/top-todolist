@@ -1,5 +1,5 @@
 import { Element } from "../classes";
-import { openTaskDialog } from "./dialog";
+import { openTaskDialog } from "./dialogs/taskDialog";
 
 const tasksSection = document.getElementById('tasks');
 

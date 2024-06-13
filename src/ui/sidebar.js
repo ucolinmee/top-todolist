@@ -2,7 +2,7 @@ import bullseyeImg from '../assets/images/bullseye.svg';
 import calendar7Img from '../assets/images/calendar7.svg';
 import documentsImg from '../assets/images/documents.svg';
 import { Element, Librarian } from '../classes';
-import { openProjectDialog } from './dialog';
+import { openProjectDialog } from './dialogs/projectDialog';
 import { renderTasks } from './taskUI';
 import { filterHandler } from '..';
 

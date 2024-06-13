@@ -130,10 +130,36 @@ export class Project {
 }
 
 export class Note {
-    constructor (title, date) {
-        this.title = title;
-        this.date = date;
+    constructor (content) {
         this.id = uniqid();
+        this.content = content;
+    }
+
+    buildNoteHtml() {
+        const noteHtml = new Element('div').setAttributes({class: 'note', id: this.id})
+
+        noteHtml
+        .addChild(new Element('div').setAttributes({class: 'note-text'}).setTextContent(this.content))
+        .addChild(new Element('div').setAttributes({class: 'date'}).setTextContent(convertDateToStringFormat(new Date())))
+        .addChild(new Element('div').setAttributes({class: 'icons'})
+            .addChild(new Element('img')
+                .setAttributes({class: 'icon edit-task white', src: editUrl}))
+            .addChild(new Element('img')
+                .setAttributes({class: 'icon delete-task white', src: trashUrl}))
+        )
+
+        return noteHtml.buildElement();
+
+        
+        //   <div class="note">
+        //       <div class="note-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+        //       <div class="date">30/05/2024</div>
+        //       <div class="icons">
+        //           <img class="icon edit-task" src="">
+        //           <img class="icon delete-task" src="">
+        //       </div>
+        //   </div>
+        
     }
 }
 

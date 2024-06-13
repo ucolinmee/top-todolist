@@ -1,8 +1,9 @@
 import './style.css';
 import loadSidebar from './ui/sidebar.js';
 import { renderTasks } from './ui/taskUI.js';
-import { Task, Project, Librarian } from './classes.js';
-import { openPreFilledTaskDialog } from './ui/dialog.js';
+import { renderNotes } from './ui/notesUI.js';
+import { Task, Project, Librarian, Note } from './classes.js';
+import { openPreFilledTaskDialog } from './ui/dialogs/taskDialog.js';
 import { startOfToday, endOfToday, addDays } from 'date-fns';
 
 function init() {
@@ -14,15 +15,22 @@ function init() {
         new Task('Haircut', startOfToday(), 0, 'Personal'),
         new Task('Pack bags for trip', startOfToday(), 2, 'Personal')
     ];
+
+    const initialNotes = [
+        new Note("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+    ]
+
     const initialProject = new Project('Personal');
     Librarian.addProject(initialProject);
-
     initialProject.tasks.push(...initialTasks);
+    initialProject.sortTasks();
+
+    Librarian.notes.push(...initialNotes);
 
     loadSidebar();
 
-    initialProject.sortTasks();
     renderTasks(initialProject.tasks, initialProject.name);
+    renderNotes();
 }
 
 export function deleteTaskHandler(e) {
