@@ -31,16 +31,16 @@ function buildViewMenuHtml() {
     ViewMenuHtml
     .addChild(new Element('div').setAttributes({class: 'view-item'}).appendEventListener('click', () => filterHandler('Today'))
         .addChild(new Element('img').setAttributes({class: 'icon', src: bullseyeImg}))
-        .addChild(new Element('p').setTextContent('Today'))
-        .addChild(new Element('div').setTextContent('7').setAttributes({class: 'num-tasks'})))
+        .addChild(new Element('p').setTextContent('Today')))
+        // .addChild(new Element('div').setTextContent('7').setAttributes({class: 'num-tasks'})))
     .addChild(new Element('div').setAttributes({class: 'view-item'}).appendEventListener('click', () => filterHandler('Next 7 Days'))
         .addChild(new Element('img').setAttributes({class: 'icon', src: calendar7Img}))
-        .addChild(new Element('p').setTextContent('Next 7 days'))
-        .addChild(new Element('div').setTextContent('10').setAttributes({class: 'num-tasks'})))
+        .addChild(new Element('p').setTextContent('Next 7 days')))
+        // .addChild(new Element('div').setTextContent('10').setAttributes({class: 'num-tasks'})))
     .addChild(new Element('div').setAttributes({class: 'view-item'}).appendEventListener('click', () => filterHandler('All'))
         .addChild(new Element('img').setAttributes({class: 'icon', src: documentsImg}))
-        .addChild(new Element('p').setTextContent('All my tasks'))
-        .addChild(new Element('div').setTextContent('14').setAttributes({class: 'num-tasks'})))
+        .addChild(new Element('p').setTextContent('All my tasks')))
+        // .addChild(new Element('div').setTextContent('14').setAttributes({class: 'num-tasks'})))
 
     sidebar.appendChild(ViewMenuHtml.buildElement());
 }
@@ -76,7 +76,7 @@ function loadProject(project) {
 
     projectHtml
     .addChild(new Element('p').setTextContent(project.name))
-    .addChild(new Element('div').setTextContent(project.tasks.length).setAttributes({class: 'num-tasks'}));
+    .addChild(new Element('div').setTextContent(project.tasks.length).setAttributes({class: 'num-tasks'}))
 
     projectHtml.appendEventListener('click', () => {
         renderTasks(project.tasks, project.name);
