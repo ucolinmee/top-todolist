@@ -3,7 +3,7 @@ import { deleteTaskHandler, editTaskHandler } from ".";
 import uniqid from 'uniqid';
 import editUrl from './assets/images/edit-button.svg';
 import trashUrl from './assets/images/trash.svg';
-import { convertDateToStringFormat, convertStringToDate } from "./helpers/date";
+import { convertDateToStringFormat } from "./helpers/date";
 
 export class Task {
     constructor (title, dueDate, priority, project, completed=false) {
@@ -27,8 +27,29 @@ export class Task {
         }
     }
 
-    toggleComplete() {
+    toggleComplete(e) {
         this.completed = !this.completed;
+
+        var editTask = document.querySelector('.edit-task');
+        var deleteTask = document.querySelector('.delete-task');
+        
+        var parentNode = document.getElementById(e.target.parentNode.id);
+        var editTask = parentNode.querySelector('.edit-task');
+        var deleteTask = parentNode.querySelector('.delete-task');
+        var nodes = parentNode.childNodes
+
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].classList.toggle('completed');
+        }
+
+        if (this.completed) {
+            editTask.style['pointer-events'] = "none";
+            deleteTask.style['pointer-events'] = "none";
+        } 
+        else {
+            editTask.style['pointer-events'] = "auto";
+            deleteTask.style['pointer-events'] = "auto";
+        }
     }
 
     updateTask(title, dueDate, priority, project) {
@@ -55,7 +76,7 @@ export class Task {
                 .setAttributes({class: 'icon delete-task', src: trashUrl})
                 .appendEventListener('click', deleteTaskHandler))
         )
-        .addChild(new Element('input').setAttributes({type: 'checkbox'}))
+        .addChild(new Element('input').setAttributes({type: 'checkbox'}).appendEventListener('click', this.toggleComplete))
 
         return taskHtml.buildElement();
 

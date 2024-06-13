@@ -127,6 +127,10 @@ h1 {
     TASKS
 */
 
+.completed {
+    text-decoration: line-through;
+}
+
 #tasks span {
     font-style: italic;
 }

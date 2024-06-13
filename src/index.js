@@ -3,7 +3,7 @@ import loadSidebar from './ui/sidebar.js';
 import { renderTasks } from './ui/taskUI.js';
 import { Task, Project, Librarian } from './classes.js';
 import { openPreFilledTaskDialog } from './ui/dialog.js';
-import { startOfToday, endOfToday, addDays, addYears } from 'date-fns';
+import { startOfToday, endOfToday, addDays } from 'date-fns';
 
 function init() {
     const initialTasks = [
