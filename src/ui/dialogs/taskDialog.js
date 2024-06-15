@@ -105,8 +105,8 @@ function buildTaskDialogHtml(task=null) {
             .addChild(buildProjectSelectHtml())
         )
         .addChild(new Element('div')
-            .addChild(new Element('input').setAttributes({type: 'button', value: 'Cancel'}).appendEventListener('click', closeTaskDialog))
-            .addChild(new Element('input').setAttributes({type: 'button', value: 'Submit'}).appendEventListener('click', () => {submitTaskDialog(task=task)}))
+            .addChild(new Element('input').setAttributes({type: 'button', value: 'Cancel', class: 'dialog-button cancel'}).appendEventListener('click', closeTaskDialog))
+            .addChild(new Element('input').setAttributes({type: 'button', value: 'Submit', class: 'dialog-button create'}).appendEventListener('click', () => {submitTaskDialog(task=task)}))
         )
     );
 

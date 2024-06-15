@@ -53,8 +53,8 @@ function buildNoteDialogHtml(note=null) {
     .addChild(new Element('h1').setTextContent('New Note'))
     .addChild(new Element('textarea').setAttributes({class: 'note-dialog-text', rows: '4', cols: '30'}))
     .addChild(new Element('div').setAttributes({class: 'dialog-btns'})
-        .addChild(new Element('button').setTextContent('Cancel').setAttributes({id: 'cancel-btn'}).appendEventListener('click', closeNoteDialog))
-        .addChild(new Element('button').setTextContent('Create').setAttributes({id: 'create-btn'}).appendEventListener('click', () => submitNoteDialog(note)))
+        .addChild(new Element('button').setTextContent('Cancel').setAttributes({id: 'cancel-btn', class: 'dialog-button cancel'}).appendEventListener('click', closeNoteDialog))
+        .addChild(new Element('button').setTextContent('Create').setAttributes({id: 'create-btn', class: 'dialog-button create'}).appendEventListener('click', () => submitNoteDialog(note)))
     );
 
     document.body.appendChild(noteDialogHtml.buildElement());

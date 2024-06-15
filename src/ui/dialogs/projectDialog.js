@@ -32,8 +32,8 @@ function buildProjectDialogHtml() {
     .addChild(new Element('h1').setTextContent('New Project'))
     .addChild(new Element('input').setAttributes({placeholder: 'Project name', class: 'project-dialog-text'}))
     .addChild(new Element('div').setAttributes({class: 'dialog-btns'})
-        .addChild(new Element('button').setTextContent('Cancel').setAttributes({id: 'cancel-btn'}).appendEventListener('click', closeProjectDialog))
-        .addChild(new Element('button').setTextContent('Create').setAttributes({id: 'create-btn'}).appendEventListener('click', submitProjectDialog))
+        .addChild(new Element('button').setTextContent('Cancel').setAttributes({id: 'cancel-btn', class: 'dialog-button cancel'}).appendEventListener('click', closeProjectDialog))
+        .addChild(new Element('button').setTextContent('Create').setAttributes({id: 'create-btn', class: 'dialog-button create'}).appendEventListener('click', submitProjectDialog))
     );
 
     document.body.appendChild(projectDialogHtml.buildElement());

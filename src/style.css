@@ -248,5 +248,27 @@ dialog {
     border: none;
     border-radius: 10px;
     padding: 1.5rem;
-    max-width: 400px;
+    width: 20vw;
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.dialog-button {
+    margin: 0.75rem 1rem 0 1rem;
+    width: 60px;
+    height: 30px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.create {
+    background-color: var(--light-blue);
+    color: #FFF;
 }
